@@ -2,8 +2,8 @@
   <div class="container">
     <h2 class="text-center mt-5">Lista de Tarefas</h2>
     <div class="d-flex">
-      <input type="text" placeholder="Nova tarefa ..." class="form-control" />
-      <button type="button" class="btn btn-info rounded-0">Adicionar</button>
+      <input v-model="task" type="text" placeholder="Nova tarefa ..." class="form-control" />
+      <button @click="AdicionarTarefas" type="button" class="btn btn-info rounded-0">Adicionar</button>
     </div>
 
     <table class="table table-bordered mt-5">
@@ -18,7 +18,7 @@
       <tbody>
         <tr v-for="(task, index) in tasks" :key="index">
           <td>{{task.Nome}}</td>
-          <td>A cumprir</td>
+          <td>{{task.Status}}</td>
           <td>
             <div class="text-center">
               <span class="fa fa-pen"></span>
@@ -44,6 +44,8 @@ export default {
 
   data(){
     return {
+      task:'',
+
       tasks: [
         {
           Nome: 'Ir para festa de Hanna',
@@ -54,6 +56,18 @@ export default {
           Status: 'A cumprir'
         }
       ]
+    }
+  },
+
+  methods: {
+    AdicionarTarefas(){
+     if (this.task.length === 0)return;
+
+    this.tasks.push({
+      Nome: this.task,
+      Status: 'A cumprir'
+    })
+
     }
   }
 }
