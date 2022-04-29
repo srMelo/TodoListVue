@@ -2,7 +2,7 @@
   <div class="container">
     <h2 class="text-center mt-5">Lista de Tarefas</h2>
     <div class="d-flex">
-      <input v-model="task" type="text" placeholder="Nova tarefa ..." class="form-control" />
+      <input v-model="task" type="text" placeholder="Nova tarefa ..." class="form-control">
       <button @click="AdicionarTarefas" type="button" class="btn btn-info rounded-0">Adicionar</button>
     </div>
 
@@ -25,7 +25,7 @@
             </div>
           </td>
           <td>
-            <div class="text-center">
+            <div  @click="deleteTask" class="text-center">
               <span class="fa fa-trash"></span>
             </div>
           </td>
@@ -68,6 +68,10 @@ export default {
       Status: 'A cumprir'
     })
 
+    },
+
+    deleteTask(index){
+      this.tasks.splice(index, 1)
     }
   }
 }
