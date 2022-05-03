@@ -20,7 +20,7 @@
           <td>{{task.Nome}}</td>
           <td>{{task.Status}}</td>
           <td>
-            <div class="text-center">
+            <div @click="editTask(index)" class="text-center">
               <span class="fa fa-pen"></span>
             </div>
           </td>
@@ -45,6 +45,7 @@ export default {
   data(){
     return {
       task:'',
+      editedTask: null,
 
       tasks: [
         {
@@ -63,15 +64,26 @@ export default {
     AdicionarTarefas(){
      if (this.task.length === 0)return;
 
-    this.tasks.push({
-      Nome: this.task,
-      Status: 'A cumprir'
-    })
+    if(this.editTask === null){
+      this.tasks.push({
+        Nome: this.task,
+        Status: 'A cumprir'
+      })} else {
+        this.tasks[this.editedTask].Nome = this.task;
+        this.editedTask = null;
+    }
+
+      this.task = ''
 
     },
 
     deleteTask(index){
       this.tasks.splice(index, 1)
+    },
+    
+    editTask(index){
+      this.task = this.tasks[index].Nome;
+      this.editedTask = index;
     }
   }
 }
