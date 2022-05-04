@@ -64,14 +64,15 @@ export default {
     AdicionarTarefas(){
      if (this.task.length === 0)return;
 
-    if(this.editTask === null){
-      this.tasks.push({
-        Nome: this.task,
-        Status: 'A cumprir'
-      })} else {
-        this.tasks[this.editedTask].Nome = this.task;
-        this.editedTask = null;
-    }
+     if(this.editedTask === null){
+       this.tasks.push({
+          Nome: this.task,
+         Status: 'A cumprir'
+        });
+       } else {
+         this.tasks[this.editedTask].Nome = this.task;
+         this.editedTask = null;
+     }
 
       this.task = ''
 
